@@ -19,13 +19,13 @@ Plugin 'tpope/vim-fugitive'
 " Git plugin not hosted on GitHub
 Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
-Plugin 'file:///home/gmarik/path/to/plugin'
+" Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
+Plugin 'ascenator/L9', {'name': 'newL9'}
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -41,15 +41,37 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-"
+" Colors
 Plugin 'flazz/vim-colorschemes'
 Plugin 'szw/vim-tags'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'chemzqm/vim-jsx-improve'
+Plugin 'mxw/vim-jsx'
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
-colorscheme  BlackSea
-filetype plugin indent on
-set tabstop=4
-set paste
-syntax on
-set nospell
-"setlocal spell spelllang=en_us
-set backspace=indent,eol,start
+
+"colorscheme spacegray
+colorscheme solarized
+
+
+set t_Co=256                        " force vim to use 256 colors
+let g:solarized_termcolors=256      " use solarized 256 fallback
+
+set tabstop=2  
+set shiftwidth=2  
+set nopaste
+set formatoptions-=cro
+
+set background=dark
+setlocal spell spelllang=en_us
+if &term =~ '256color'
+    " Disable Background Color Erase (BCE) so that color schemes
+    " work properly when Vim is used inside tmux and GNU screen.
+    set t_ut=
+endif
+setlocal foldmethod=syntax
+set nocompatible
+filetype plugin on
+runtime macros/matchit.vim
+set completeopt-=preview
